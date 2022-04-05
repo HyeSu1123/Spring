@@ -19,8 +19,6 @@ public class BuyController {
 		this.service = service;
 	}
 	/********************************중요**********************************/
-	
-	
 	public void buy() {
 		System.out.println("controller buy() ~~~~~~~~~~");
 		service.buy();
