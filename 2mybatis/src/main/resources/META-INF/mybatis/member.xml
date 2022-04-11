@@ -5,30 +5,30 @@
   <mapper namespace="day3.mapper.MemberTblMapper">
  <!-- mybatis-spring에서는 namespace속성이 필수이다. : mapper 패키지이름.인터페이스명으로 설정 -->
  
-  <insert id="insert" parameterType="day3.dto.Member">
+  <insert id="insert" parameterType="Member">
   INSERT INTO MEMBER_TBL_02 
   (CUSTNO, CUSTNAME, PHONE, ADDRESS, JOINDATE, GRADE, CITY) 
   VALUES(#{custNo},#{custName},#{phone},#{address},SYSDATE,#{grade},#{city})
   <!-- 파라미터 타입이 클래스일때 #{}는 프로퍼티 이름을 정확히 대소문자 구분해서 작성하기. -->
   </insert>
   
-  <update id="update" parameterType="day3.dto.Member">
+  <update id="update" parameterType="Member">
   UPDATE MEMBER_TBL_02
   SET PHONE=#{phone}, ADDRESS=#{address},CITY=#{city} WHERE CUSTNO=#{custNo}
   </update>
   
   <!-- select 실행 결과를 자동으로  Member 객체를 생성해서 매핑을 한다. -->
-  <select id="selectOne" parameterType="int" resultType="day3.dto.Member">
+  <select id="selectOne" parameterType="int" resultType="Member">
   select * from member_tbl_02 where custno = #{custNo}
   </select>
   
   <!-- select 실행결과가 여러행이 되는 List인 경우에는 <T>에 해당하는 제너릭 타입을 설정한다. -->
-  <select id="selectAll" resultType="day3.dto.Member">
+  <select id="selectAll" resultType="Member">
   select * from member_tbl_02
   </select>
   
   <!-- 동적쿼리 검색 -->
-  <select id="search" parameterType="java.util.Map" resultType="day3.dto.Member">
+  <select id="search" parameterType="java.util.Map" resultType="Member">
   select * from member_tbl_02 
 		<if test="column=='name'"> 
 	   WHERE CUSTNAME LIKE '%'||#{find}||'%'
@@ -47,7 +47,7 @@
   
   
   <!-- 테스트용 서치 -->
-  <select id="searchName" parameterType="String" resultType="day3.dto.Member">
+  <select id="searchName" parameterType="String" resultType="Member">
   SELECT * FROM MEMBER_TBL_02 WHERE CUSTNAME LIKE '%'||#{find}||'%';
  <!--  WHERE CUSTNAME =#{custName} -->
   </select>
