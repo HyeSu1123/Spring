@@ -9,7 +9,7 @@
 </head>
 <body bgcolor="#FFFFCC">
 	<div align="center">
-		<br>${email }<br>
+		<br>${email }<br> <!-- 모델객체로 받아온(Model model선언 -->
 		${msg } <br><br>
 		<a href="#" onclick="self.close()">닫기</a>
 	</div>

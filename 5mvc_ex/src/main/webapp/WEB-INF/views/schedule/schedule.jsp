@@ -8,18 +8,19 @@
 <head>
 <meta charset="UTF-8">
 <title>memberV3 My Schedule</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/member/mytable.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mytable.css">
 </head>
 <body>
 <%@ include file="../sessionCheck.jsp" %> <!-- 로그인을 해야하는 페이지에 추가 -->
 <c:if test="${member != null }">  <!-- 세션 애트리뷰트가 null 아닐때만. -->
-	<form action="./save" method="get">
+	<form action="./save.do" method="get"> <!-- 추가 버튼을 누르면 데이터를 저장. -->
+	<input type="hidden" name="mno"  value="${member.mno }">
 		<input type="text" name="title" placeholder="내용 입력하세요."> <input
 			type="date" name="sdate"> <input type="time" name="stime">
 		<input type="submit" value="추가"> 
 		<input type="button" value="홈" 
-			 onclick="location.href='${pageContext.request.contextPath}/home';">
-			 				<!-- 상대경로로 하면 location.href='../home'; -->
+			 onclick="location.href='${pageContext.request.contextPath}/';">
+			 				<!-- 상대경로로 하면 location.href='../'; -->
 	</form>
 	<hr>
 	<h3>나의 스케쥴</h3>
@@ -37,16 +38,28 @@
 	<c:forEach var="sch" items="${list}">
 		<tr>
 			<td>${sch.title}</td>
-			<td>
+			<td colspan="2"> ${sch.sdate } 
+				<input type="button" onclick="delete_sch('${sch.idx}')" value="삭제">
+			</td>
+			<%-- 날짜타입일때 사용<td>
 				<fmt:formatDate value="${sch.sdate }" pattern="yyyy-MM-dd"/>
 			</td>
 			<td>
 				<fmt:formatDate value="${sch.sdate }" pattern="a hh:mm"/>
-			</td>
+			</td> --%>
 		</tr>
 	</c:forEach>		
 
 	</table>
 </c:if>
+
+<script type="text/javascript">
+	function delete_sch(idx) {
+		const yn=confirm('스케쥴 삭제할까요?');
+		console.log(yn);
+		if(yn==true)   //if(confirm('스케쥴 삭제할까요?')) 로 테스트해보고 바꾸세요.
+		location.href="./delete.do?idx="+idx;
+	}
+</script>
 </body>
 </html>

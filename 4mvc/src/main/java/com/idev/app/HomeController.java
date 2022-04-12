@@ -93,6 +93,9 @@ public class HomeController {
 		logger.info("[My]" + param);
 		return "redirect:/"; //url이 context ~~/app/ 로 새로운 요청으로 응답
 	}
+	//-------위에는 --> view -> controller 메소드 또는 요청파라미터 -> controller 메소드
+	
+	//-------아래는 --> controller -> view 또는 새로운 요청의 파라미터)로 데이터를 전달
 	
 	@RequestMapping(value="model")
 	public void model(Model model) {

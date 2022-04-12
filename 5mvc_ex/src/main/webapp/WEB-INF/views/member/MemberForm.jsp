@@ -58,7 +58,7 @@
 			return;   /* 함수 종료 */
 		}
 		//이동할 url , 윈도제목, 옵션 순서
-		var url="./idCheck.do?email="+email;
+		var url="./idCheck.do?email="+email;	//MemerController 와 연결.
 		//새로운 브라우저 창을 열어줍니다. 브라우저 크기 : 300x150 ,
 		//브라우저의 url은 url변수로 값으로 합니다.
 		window.open(url,"아이디 중복체크","width=300,height=150,left=900");
@@ -71,7 +71,9 @@
 <body>
 <div style="width: 70%; margin: auto;">
 		<h3>회원 등록</h3>
+		
 		<!-- 다른 방법 : onsubmit 은 입력값 유효성 검증을 위한 것이다.submit 전에 실행된다. -->
+		<!-- 이 파일의 현재 경로는 (./)는 http://localhost:8085/idev/member -->
 		<form name="frmUser" method="post" action="./join.do">
 			<table style="width: 100%">
 				<tr>

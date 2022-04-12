@@ -56,9 +56,15 @@ public class MemberController {
 	}
 	
 	@GetMapping("/idCheck.do")
-	public String idCheck() {
-		return "member/idCheck.jsp";
-	}
+	public String idCheck(String email,Model model) { //검사하려고 했던 이메일은 요청 파라미터(매개변수 String email)로 불러온다.
+		String msg;
+		if(mapper.checkEmail(email) == 0)
+			msg="사용할 수 있는 이메일 입니다.";
+		else msg="사용할 수 없는 이메일 입니다.";
+		model.addAttribute("email",email);
+		model.addAttribute("msg",msg);
+		return "member/idCheck"; //여기서 idCheck.jsp파일로 넘어감.
+	} 
 	
 	
 	
